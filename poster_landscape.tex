@@ -179,7 +179,7 @@
 \begin{itemize} \compresslist
 \item Require frequent calibration due to deterioration, changes in position, and other factors
 \item Interest in multi-CGM fusion and fault tolerance for improved accuracy and resiliency -- Take many sensors to produce a single \emph{best} estimate, accounting for risk of sensor failure
-\item Needs to be tolerant of multiple faults, quick response, and efficient for use in wearable, power-constrained systems
+\item Needs to be tolerant of multiple faults, provide quick response, and be efficient for use in wearable, power-constrained systems
 \item \textbf{Problem:} Study and experimentation requires complex experimental setup
 \item Until we can develop experimental platform, we can explore other sensor types
 \end{itemize}
@@ -200,49 +200,82 @@ Temperature sensors and accelerometers experience similar problems and many appl
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \headerbox{Temperature Sensor Experimentation}{name=temp-experimentation,column=0,span=2,below=motivations}{
+\headerbox{Temperature Sensor Experimentation}{name=temp-experimentation,
+           column=0,span=2,below=motivations}{
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{multicols}{2}
-We developed a system of 8 STTS751 temperature sensors to log readings in a Temptronic TP4500 controlled temperature chamber for a reference~\cite{atena:iccd}.
+\noindent
+\begin{minipage}[b][6.8cm][t]{\columnwidth+0.5\columnsep}
+	\begin{wrapfigure}{r}{0.5\columnwidth}
+	\vspace{-1em}
+	\includegraphics[width=0.5\columnwidth]{tp4500}
+	\vspace{-2em}
+	\end{wrapfigure}
+	We developed a system of 8 STTS751 temperature sensors to log readings in a Temptronic TP4500 controlled temperature chamber for a reference~\cite{atena:iccd}.
+	\begin{itemize} \compresslist
+	\item Use 8 STTS751 digital temperature sensors in TP4500 temperature control chamber
+	\end{itemize}
+\end{minipage}
 
-\begin{itemize} \compresslist
-\item Use 8 STTS751 digital temperature sensors in TP4500 temperature control chamber
-\end{itemize}
-\begin{center}
-\includegraphics[width=0.8\columnwidth]{tp4500}
-\includegraphics[width=0.8\columnwidth]{temp_calib}
-\end{center}
+\noindent
+\begin{minipage}[t][6.8cm][t]{\columnwidth}
+	\begin{center}
+		\includegraphics[width=\columnwidth]{temp_err_dist}
+	\end{center}
+\end{minipage}
+
+%\begin{center}
+%\includegraphics[width=0.8\columnwidth]{tp4500}
+%\includegraphics[width=0.8\columnwidth]{temp_calib}
+%\end{center}
 
 \end{multicols}
 
 }
 
-\headerbox{Accelerometer Experimentation}{name=acc-experimentation,column=2,span=2,below=motivations,bottomaligned=temp-experimentation}{
+\headerbox{Accelerometer Experimentation}{name=acc-experimentation,
+           column=2,span=2,below=motivations,bottomaligned=temp-experimentation}{
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{multicols}{2}
-We designed an experiment with 5 MMA8451Q digital accelerometers on a track using a 1200FPS camera as a reference for speed.
 
-Prior off-line calibration with over 30,000 reference samples is performed with all sensors mounted to account for discrepancies in manufacturing and mounting. Coefficients are generated using the linear least-squares method~\cite{st:calib}.
-\begin{center}
-\includegraphics[height=0.6\columnwidth,angle=90]{acc_setup}
-\end{center}
-\pagebreak
-\includegraphics[width=0.9\columnwidth]{acc_reference}
 
-\noindent \begin{tabular}{|c|c|c|c|}
-\hline
-	\multirow{2}{*}{\pbox{20cm}{\# Faulty \\ Sensors}} & \multicolumn{3}{|c|}{MSE} \\
-\cline{2-4}
-	& M1 \cite{zilic:wh} & M2 \cite{atena:iccd} & \textbf{M3} \\
-\hline
-	0 & \multicolumn{3}{|c|}{\textbf{0.6199}} \\
-\hline
-	1 & 0.8414 & \multicolumn{2}{|c|}{\textbf{0.802}} \\
-\hline
-	2 & 5.112 & 5.1449 & \textbf{1.8778} \\
-\hline
+\noindent
+\begin{minipage}{\columnwidth}
+%	\begin{wrapfigure}{r}{0.4\columnwidth}
+%	\vspace{-1em}
+%	\includegraphics[width=0.4\columnwidth]{acc_setup}
+%	\vspace{-2em}
+%	\end{wrapfigure}
+	
+	\indent We designed an experiment with 5 MMA8451Q digital accelerometers on a track using a 1200FPS camera as a reference for speed.
+	
+	Prior off-line calibration with over 30,000 reference samples is performed with all sensors mounted to account for discrepancies in manufacturing and mounting. Coefficients are generated using the linear least-squares method~\cite{st:calib}.
+\end{minipage}
 
-\end{tabular}
+\noindent
+\begin{minipage}{\columnwidth}
+	\begin{wrapfigure}{l}{0.5\columnwidth}
+		\includegraphics[width=0.6\columnwidth]{acc_reference}
+	\end{wrapfigure}
+
+	New fault screening technique demonstrated greatly improved MSE in fault conditions compared with previous work
+
+	\begin{minipage}{\columnwidth}
+		\noindent \begin{tabular}{|c|c|c|c|}
+		\hline
+			\multirow{2}{*}{\pbox{20cm}{\# Faulty \\ Sensors}} & \multicolumn{3}{|c|}{MSE} \\
+		\cline{2-4}
+			& M1 \cite{zilic:wh} & M2 \cite{atena:iccd} & \textbf{M3} \\
+		\hline
+			0 & \multicolumn{3}{|c|}{\textbf{0.6199}} \\
+		\hline
+			1 & 0.8414 & \multicolumn{2}{|c|}{\textbf{0.802}} \\
+		\hline
+			2 & 5.112 & 5.1449 & \textbf{1.8778} \\
+		\hline
+		\end{tabular}
+	\end{minipage}
+\end{minipage}
 
 \end{multicols}
 
@@ -286,29 +319,30 @@ Prior off-line calibration with over 30,000 reference samples is performed with 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \headerbox{References}{name=references,column=0,below=temp-experimentation,above=bottom}{
+\headerbox{References}{name=references,column=0,
+                       below=temp-experimentation,above=bottom}{
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \smaller
     \bibliographystyle{ieee}
     \renewcommand{\section}[2]{\vskip 0.05em}
       \begin{thebibliography}{1}\itemsep=-0.01em
       \setlength{\baselineskip}{0.4em}
-      \bibitem{st:calib}
-        STMicroelectronics. \newblock (2010, Apr.).
-        \newblock{\em Tilt Measurement Using a Low-g 3-Axis Accelerometer},
-        \newblock{\em Application Note AN3182 [Online]}
-        
-      \bibitem{atena:iccd}
-      A.~Roshan~fekr, M.~Janidarmian, O.~Sarbishei, B.~Nahill, K.~Radecka, Z.~Zilic,
-      \newblock{``MSE Minimization and Fault-Tolerant Data Fusion for Multi-Sensor Systems''},
-      \newblock{\em IEEE ICCD},
-      \newblock{Oct. 2012, pp. 445-452.}
-      
-      \bibitem{zilic:wh}
-      Z.~Zilic, K.~Radecka,
-      \newblock{``Fault Tolerant Glucose Sensor Readout and Recalibration,''}
-      \newblock{Proceedings of Wireless Health, WH, 2011}
-      
+	
+	\bibitem{atena:iccd}
+	A.~Roshan~fekr, M.~Janidarmian, O.~Sarbishei, B.~Nahill, K.~Radecka, Z.~Zilic,
+	\newblock{``MSE Minimization and Fault-Tolerant Data Fusion for Multi-Sensor Systems''},
+	\newblock{\em IEEE ICCD},
+	\newblock{Oct. 2012, pp. 445-452.}
+
+	\bibitem{zilic:wh}
+	Z.~Zilic, K.~Radecka,
+	\newblock{``Fault Tolerant Glucose Sensor Readout and Recalibration,''}
+	\newblock{Proceedings of Wireless Health, WH, 2011}
+
+	\bibitem{st:calib}
+	STMicroelectronics. \newblock (2010, Apr.).
+	\newblock{\em Tilt Measurement Using a Low-g 3-Axis Accelerometer},
+	\newblock{\em Application Note AN3182 [Online]}
 %      \bibitem{awf:tracking}
 %        A.~Buchanan and A.~Fitzgibbon.
 %        \newblock {I}nteractive {F}eature {T}racking using {K-D} {T}rees and {D}ynamic {P}rogramming.
@@ -317,7 +351,8 @@ Prior off-line calibration with over 30,000 reference samples is performed with 
    \vspace{4em}
   }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \headerbox{Future Developments}{name=future,column=1,span=3,aligned=references,above=bottom}{
+\headerbox{Future Developments}{name=future,column=1,span=3,
+                                aligned=references,above=bottom}{
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{center}
 {\large \bf
@@ -326,7 +361,9 @@ Multiple paths to expand on our findings:
 }
 \end{center}
 \begin{multicols}{2}
-\begin{minipage}{\columnwidth}
+
+\noindent
+\begin{minipage}{\columnwidth+\columnsep}
 	\begin{center}
 	\textsc{Hybrid in-silico/in-vitro CGM experimental setup}
 	\end{center}
@@ -339,26 +376,28 @@ Multiple paths to expand on our findings:
 	
 	Allow for the substitution of models, hardware, and experimental algorithms anywhere in the loop
 \end{minipage}
-	%This method is very effective in the case that multiple sensors are expected to experience the same stimulus. This is particularly valuable for temperature sensors, gyroscopes on a rigid frame, and some fairly limited cases for accelerometers.
-	
-%We would like to extend this work to cases where sensors
+
 \pagebreak
 
+\noindent
+\begin{minipage}{\columnwidth}
+	\begin{center}
+	\textsc{Explore further and more elaborate applications of fault-tolerant fusion in inertial sensors}
+	\vspace{-1em}
+	\end{center}
+	
+	{\sc Limitations of proposed technique:} Restricted to linear-motion case where sensor readings are identical
+	
+	\vspace{0.5em}
+	
+	{\sc More practical extension:} Use spatially distributed accelerometers and perhaps gyroscopes as well to compensate for rotation
+	\vspace{-0.5em}
+	\begin{itemize} \compresslist
+	\item Derive fault-tolerance from direct redundancy and that of spatially-separated accelerometer pair and gyroscope
+	\end{itemize}
+\end{minipage}
 
-\begin{center}
-\textsc{Explore further and more elaborate applications of fault-tolerant fusion in inertial sensors}
-\vspace{-1em}
-\end{center}
 
-{\sc Limitations of proposed technique:} Restricted to linear-motion case where sensor readings are identical
-
-\vspace{0.5em}
-
-{\sc More practical extension:} Use spatially distributed accelerometers and perhaps gyroscopes as well to compensate for rotation
-\vspace{-0.5em}
-\begin{itemize} \compresslist
-\item Derive fault-tolerance from direct redundancy and that of spatially-separated accelerometer pair and gyroscope
-\end{itemize}
 \end{multicols}
 \vspace{0.3em}
 }
@@ -394,7 +433,7 @@ Multiple paths to expand on our findings:
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \headerbox{Fusion Process}{name=fusion-process,column=4,span=1,row=0}{
+  \headerbox{Fusion Process}{name=fusion-process,column=4,span=1,row=0,bottomaligned=motivations}{
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Propose three-step procedure for fault-tolerant data fusion:
 	\begin{enumerate}\compresslist
@@ -406,7 +445,7 @@ Propose three-step procedure for fault-tolerant data fusion:
 
 
 
-\headerbox{Fault Screening}{name=fault,column=4,span=1,below=fusion-process}{
+\headerbox{Fault Screening}{name=fault,column=4,span=1,below=fusion-process,bottomaligned=acc-experimentation}{
 \begin{algorithm}[H]
 	\linesnumbered
 	\dontprintsemicolon
@@ -452,7 +491,7 @@ Optimal coefficients are \\
 c_j = \frac{1}{S_j \sum_{k=1}^{n}\frac{1}{S_k}}
 \end{align*}
 
-where $S_j$ is the average square error for sensor $j$. For zero-mean error (proper calibration), this is the noise variance.
+where $S_j$ is the average square error for sensor $j$. For zero-mean error (calibrated), this is the noise variance.
 }
 
 
