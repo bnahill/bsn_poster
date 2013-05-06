@@ -185,14 +185,14 @@
 \end{itemize}
 \pagebreak
 
-{\sc
-Temperature sensors and accelerometers experience similar problems and many applications demand high-accuracy, fault-tolerant sensor readings
-}
-\begin{itemize} \compresslist
-\item More accessible reference than CGM means we can perform experiments to gather data
-\item Test against known reference stimuli to demonstrate fusion and fault-tolerant methods
-\end{itemize}
-
+\noindent
+\begin{minipage}{\columnwidth}
+	{\sc Temperature sensors and accelerometers experience similar problems and many applications demand high-accuracy, fault-tolerant sensor readings}
+	\begin{itemize} \compresslist
+	\item More accessible reference than CGM means we can perform experiments to gather data
+	\item Test against known reference stimuli to demonstrate fusion and fault-tolerant methods
+	\end{itemize}
+\end{minipage}
 
 
 \end{multicols}
@@ -213,7 +213,8 @@ Temperature sensors and accelerometers experience similar problems and many appl
 	\end{wrapfigure}
 	We developed a system of 8 STTS751 temperature sensors to log readings in a Temptronic TP4500 controlled temperature chamber for a reference~\cite{atena:iccd}.
 	\begin{itemize} \compresslist
-	\item Use 8 STTS751 digital temperature sensors in TP4500 temperature control chamber
+		\item Use 8 STTS751 digital temperature sensors in TP4500 temperature control chamber
+		\item Gather over 100,000 samples at $4^\circ$C intervals from $10^\circ$C to $30^\circ$C to calibrate and characterize sensor error for use in fusion and fault-detection
 	\end{itemize}
 \end{minipage}
 
@@ -221,7 +222,14 @@ Temperature sensors and accelerometers experience similar problems and many appl
 \begin{minipage}[t][6.8cm][t]{\columnwidth}
 	\begin{center}
 		\includegraphics[width=\columnwidth]{temp_err_dist}
+		\vspace{-0.2em}
+		{\sc Gaussian fitting of sensor errors}
 	\end{center}
+	
+	\begin{itemize}\compresslist
+		\item Calibration produces zero-mean distributions fitted to Gaussian
+		\item Use individual sensor statistics for fault detection thresholds and weighting in fusion.
+	\end{itemize}
 \end{minipage}
 
 %\begin{center}
@@ -241,25 +249,29 @@ Temperature sensors and accelerometers experience similar problems and many appl
 
 \noindent
 \begin{minipage}{\columnwidth}
-%	\begin{wrapfigure}{r}{0.4\columnwidth}
-%	\vspace{-1em}
-%	\includegraphics[width=0.4\columnwidth]{acc_setup}
-%	\vspace{-2em}
-%	\end{wrapfigure}
+	\begin{wrapfigure}{r}{0.4\columnwidth}
+	\vspace{-1em}
+	\includegraphics[width=0.4\columnwidth]{acc_setup}
+	\vspace{-2em}
+	\end{wrapfigure}
 	
-	\indent We designed an experiment with 5 MMA8451Q digital accelerometers on a track using a 1200FPS camera as a reference for speed.
+	\indent We designed an experiment with 5 MMA8451Q digital accelerometers at 800Hz on a track using a 1200FPS camera as a reference for speed. 
 	
 	Prior off-line calibration with over 30,000 reference samples is performed with all sensors mounted to account for discrepancies in manufacturing and mounting. Coefficients are generated using the linear least-squares method~\cite{st:calib}.
 \end{minipage}
 
 \noindent
 \begin{minipage}{\columnwidth}
-	\begin{wrapfigure}{l}{0.5\columnwidth}
-		\includegraphics[width=0.6\columnwidth]{acc_reference}
+	\begin{wrapfigure}{l}{0.55\columnwidth}
+		\vspace{-1em}
+		\begin{center}
+			\includegraphics[width=0.6\columnwidth]{acc_reference}
+		\end{center}
+		\vspace{-2em}
 	\end{wrapfigure}
 
-	New fault screening technique demonstrated greatly improved MSE in fault conditions compared with previous work
-
+	New fault screening technique demonstrated greatly improved MSE in fault conditions compared with previous work. \\
+	
 	\begin{minipage}{\columnwidth}
 		\noindent \begin{tabular}{|c|c|c|c|}
 		\hline
@@ -281,52 +293,17 @@ Temperature sensors and accelerometers experience similar problems and many appl
 
 }
 
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  \headerbox{Problem}{name=problem,column=0,row=0,span=1}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%	Multi-sensor integration is growing in popularity due to greater availability of inexpensive sensor devices, providing new opportunities for greater accuracy and fault tolerance. For critical systems, fault response must be quick.
-%	
-%	We describe a new fault-tolerant MSE(Mean Square Error)-minimizing sensor fusion algorithm which can be used to improve sensor accuracy in multi-sensor systems while taking into account potential reliability issues of the sensors. Accelerometers have relatively high throughput for the low-power applications in which they are often encountered, necessitating a particularly efficient operation.
-%	
-%	The algorithm consists of three parts:
-%	\begin{enumerate}\compresslist
-%	\item Offline calibration
-%	\item Sensor fault screening
-%	\item Fusion of non-faulty sensor data
-%	\end{enumerate}
-%	\vspace{0em} % Space to align next box to the right
-% }
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  \headerbox{Contributions}{name=contributions,column=3,row=0}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%	\large \bf
-%	To address the need for reliable sensor data from potentially faulty sensors in critical systems demanding quick fault detection and efficient fusion, we present the following:
-%	\begin{enumerate}
-%	\item A fault tolerant screening process to filter out faulty sensors
-%	\item An MSE-minimizing linear fusion technique to operate on functional sensors
-%	\item Test platforms for calibration and evaluation of accelerometers and temperature sensors
-%	\end{enumerate}
-% }
-
-
-
-
-
-
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \headerbox{References}{name=references,column=0,
                        below=temp-experimentation,above=bottom}{
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \smaller
-    \bibliographystyle{ieee}
-    \renewcommand{\section}[2]{\vskip 0.05em}
-      \begin{thebibliography}{1}\itemsep=-0.01em
-      \setlength{\baselineskip}{0.4em}
+\smaller
+\bibliographystyle{ieee}
+\renewcommand{\section}[2]{\vskip 0.05em}
+\begin{thebibliography}{1}\itemsep=-0.01em
+	\setlength{\baselineskip}{0.4em}
 	
 	\bibitem{atena:iccd}
 	A.~Roshan~fekr, M.~Janidarmian, O.~Sarbishei, B.~Nahill, K.~Radecka, Z.~Zilic,
@@ -347,9 +324,9 @@ Temperature sensors and accelerometers experience similar problems and many appl
 %        A.~Buchanan and A.~Fitzgibbon.
 %        \newblock {I}nteractive {F}eature {T}racking using {K-D} {T}rees and {D}ynamic {P}rogramming.
 %        \newblock In {\em CVPR '06}
-      \end{thebibliography}
-   \vspace{4em}
-  }
+\end{thebibliography}
+\vspace{4em}
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \headerbox{Future Developments}{name=future,column=1,span=3,
                                 aligned=references,above=bottom}{
@@ -383,14 +360,14 @@ Multiple paths to expand on our findings:
 \begin{minipage}{\columnwidth}
 	\begin{center}
 	\textsc{Explore further and more elaborate applications of fault-tolerant fusion in inertial sensors}
-	\vspace{-1em}
+	\vspace{0em}
 	\end{center}
 	
 	{\sc Limitations of proposed technique:} Restricted to linear-motion case where sensor readings are identical
 	
 	\vspace{0.5em}
 	
-	{\sc More practical extension:} Use spatially distributed accelerometers and perhaps gyroscopes as well to compensate for rotation
+	{\sc More practical extension:} Use spatially distributed accelerometers augmented with gyroscopes and/or magnetometers as well to compensate for rotation
 	\vspace{-0.5em}
 	\begin{itemize} \compresslist
 	\item Derive fault-tolerance from direct redundancy and that of spatially-separated accelerometer pair and gyroscope
@@ -401,46 +378,20 @@ Multiple paths to expand on our findings:
 \end{multicols}
 \vspace{0.3em}
 }
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  %\headerbox{}{name=src,column=3,aligned=references,above=bottom}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-  %}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\headerbox{Accelerometer Experimental Setup}{name=speed,column=1,span=2,row=0,below=motivations,above=future}{
-%  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%\begin{tabular}{| c | c | c | c |}
-%%\end{tabular}
-%\begin{multicols}{2}
-%
-%%\begin{wrapfigure}{l}{0.4\textwidth}
-%%\begin{center}
-%\includegraphics[width=0.4\textwidth]{result_tables}
-%%\end{center}
-%%\end{wrapfigure}x
-%
-
-%
-%\end{multicols}
-%}
-
-
-
-
-
-
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \headerbox{Fusion Process}{name=fusion-process,column=4,span=1,row=0,bottomaligned=motivations}{
+\headerbox{Fusion Process}{name=fusion-process,column=4,span=1,row=0,bottomaligned=motivations}{
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Propose three-step procedure for fault-tolerant data fusion:
-	\begin{enumerate}\compresslist
-		\item Offline fixed-position calibration against reference (gravity)
-		\item Sensor fault screening
-		\item Fusion of non-faulty sensor data
-	\end{enumerate}
+\vspace{-0.7em}
+\begin{enumerate}\compresslist
+	\item Offline fixed-position calibration against reference (gravity)
+	\item Sensor fault screening
+	\item Fusion of non-faulty sensor data
+\end{enumerate}
+\vspace{-0.7em}
+The result is a minimum-MSE linear fusion with bounded maximum mismatch in fault conditions.
 }
 
 
